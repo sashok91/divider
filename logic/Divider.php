@@ -20,7 +20,7 @@ class Divider
         $this->minPartLength = round($this->calcStrLength($this->source) / 2);
     }
 
-    public function divide()
+    protected function divide()
     {
         // for elements of the first part
         $document1 = new DOMDocument();
@@ -81,7 +81,7 @@ class Divider
 
     // It is assumed that the image can be nested in another element. So we look for all parents of the element until the 'body'.
     // Then we move the element with the parent.
-    public function findFirstAndRemove($tagName)
+    protected function findFirstAndRemove($tagName)
     {
         $result = null;
         $nodes = $this->dom->getElementsByTagName($tagName);
@@ -102,7 +102,7 @@ class Divider
     }
 
     // calculate length of content withot tags
-    public function calcStrLength($htmlString)
+    protected function calcStrLength($htmlString)
     {
         $length = 0;
 
@@ -114,7 +114,7 @@ class Divider
         return $length;
     }
 
-    function getInnerHTML($node)
+    protected function getInnerHTML($node)
     {
         $document = new DOMDocument();
         $document->appendChild($document->importNode($node, true));
